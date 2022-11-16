@@ -18,10 +18,6 @@ namespace Mediapipe.Unity.Holistic
     [SerializeField] private MaskAnnotationController _segmentationMaskAnnotationController;
     [SerializeField] private NormalizedRectAnnotationController _poseRoiAnnotationController;
 
-    [SerializeField] public FaceSolver faceSolver;
-    [SerializeField] public PoseSolver poseSolver;
-    [SerializeField] public HandSolver handSolver;
-
     public HolisticTrackingGraph.ModelComplexity modelComplexity
     {
       get => graphRunner.modelComplexity;
@@ -134,7 +130,6 @@ namespace Mediapipe.Unity.Holistic
     private void OnFaceLandmarksOutput(object stream, OutputEventArgs<NormalizedLandmarkList> eventArgs)
     {
       _holisticAnnotationController.DrawFaceLandmarkListLater(eventArgs.value);
-      faceSolver.SetFaceLandmarks(eventArgs.value);
     }
 
     private void OnPoseLandmarksOutput(object stream, OutputEventArgs<NormalizedLandmarkList> eventArgs)
@@ -145,19 +140,16 @@ namespace Mediapipe.Unity.Holistic
     private void OnLeftHandLandmarksOutput(object stream, OutputEventArgs<NormalizedLandmarkList> eventArgs)
     {
       _holisticAnnotationController.DrawLeftHandLandmarkListLater(eventArgs.value);
-      handSolver.SetLeftHandLandmarks(eventArgs.value);
     }
 
     private void OnRightHandLandmarksOutput(object stream, OutputEventArgs<NormalizedLandmarkList> eventArgs)
     {
       _holisticAnnotationController.DrawRightHandLandmarkListLater(eventArgs.value);
-      handSolver.SetRightHandLandmarks(eventArgs.value);
     }
 
     private void OnPoseWorldLandmarksOutput(object stream, OutputEventArgs<LandmarkList> eventArgs)
     {
       _poseWorldLandmarksAnnotationController.DrawLater(eventArgs.value);
-      poseSolver.SetPoseLandmarks(eventArgs.value);
     }
 
     private void OnSegmentationMaskOutput(object stream, OutputEventArgs<ImageFrame> eventArgs)
