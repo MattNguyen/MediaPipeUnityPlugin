@@ -16,7 +16,7 @@ namespace ReadyPlayerMe
             avatarLoader.OnCompleted += (_, args) =>
             {
                 avatar = args.Avatar;
-                AvatarAnimatorHelper.SetupAnimator(args.Metadata.BodyType, avatar);
+                //AvatarAnimatorHelper.SetupAnimator(args.Metadata.BodyType, avatar);
             };
             avatarLoader.LoadAvatar(avatarUrl);
         }
